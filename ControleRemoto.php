@@ -16,17 +16,17 @@ class ControleRemoto implements Controlador{
         $this->tocando=false;
     }
     
-    public function getVolume() {return $this->volume;}
-    public function getLigado() {return $this->ligado;}
-    public function getTocando() {return $this->tocando;}
+    private function getVolume() {return $this->volume;}
+    private function getLigado() {return $this->ligado;}
+    private function getTocando() {return $this->tocando;}
     
-    public function setVolume($volume): void {
+    private function setVolume($volume): void {
         $this->volume = $volume;
     }
-    public function setLigado($ligado): void {
+    private function setLigado($ligado): void {
         $this->ligado = $ligado;
     }
-    public function setTocando($tocando): void {
+    private function setTocando($tocando): void {
         $this->tocando = $tocando;
     }
 
@@ -37,6 +37,7 @@ class ControleRemoto implements Controlador{
         $this->setLigado(false);
     }
     public function abrirMenu() {
+        echo '------------MENU-------------';
         echo "<br> Está ligado?.." . ($this->getLigado()?"SIM":"NÃO");
         echo "<br> Está tocando?..." . ($this->getTocando()?"SIM":"NÃO");
         echo "<br> Volume: " . $this->getVolume();
@@ -61,11 +62,15 @@ class ControleRemoto implements Controlador{
     public function maisVolume() {
         if ($this->getLigado()) {
             $this->setVolume($this->getVolume()+5);
+        }else{
+            echo "ERRO: Está desligado!";
         }
     }
     public function menosVolume() {
         if ($this->getLigado()) {
             $this->setLigado($this->getVolume()-5);
+        }else{
+            echo "ERRO: Está desligado!";
         }
     }
     public function pause() {
