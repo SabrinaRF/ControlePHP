@@ -30,18 +30,25 @@ class ControleRemoto implements Controlador{
         $this->tocando = $tocando;
     }
 
-    public function abrirMenu() {
-        
-    }
-    public function fecharMenu() {
-        
-    }
     public function ligar() {
-        
+        $this->setLigado(true);
     }
     public function desligar() {
-        
+        $this->setLigado(false);
     }
+    public function abrirMenu() {
+        echo "<br> Está ligado?.." . ($this->getLigado()?"SIM":"NÃO");
+        echo "<br> Está tocando?..." . ($this->getTocando()?"SIM":"NÃO");
+        echo "<br> Volume: " . $this->getVolume();
+        for ($i=0; $i<= $this->getVolume();$i+=5){
+            echo " | ";
+        }
+        echo"<br>";
+    }
+    public function fecharMenu() {
+        echo "<br> Fechando menu ... ";
+    }
+    
     public function ligarMudo() {
 
         }
