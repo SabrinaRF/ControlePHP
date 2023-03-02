@@ -48,21 +48,26 @@ class ControleRemoto implements Controlador{
     public function fecharMenu() {
         echo "<br> Fechando menu ... ";
     }
-    
     public function ligarMudo() {
-
-        }
+        if ($this->getLigado() && $this->getVolume()>0) {
+            $this->setVolume(0);
+        } 
+    }
     public function desligarMudo() {
-        
+        if($this->getLigado() && $this->getVolume()==0){
+            $this->setVolume(50);
+        }
     }
     public function maisVolume() {
-        
+        if ($this->getLigado()) {
+            $this->setVolume($this->getVolume()+5);
+        }
     }
-
     public function menosVolume() {
-        
+        if ($this->getLigado()) {
+            $this->setLigado($this->getVolume()-5);
+        }
     }
-
     public function pause() {
         
     }
