@@ -10,8 +10,8 @@ class ControleRemoto implements Controlador{
     private $ligado;
     private $tocando;
     
-    public function ControleRemoto() {
-        $this->volume= 50;
+    public function __construct() {
+        $this->volume=50;
         $this->ligado=false;
         $this->tocando=false;
     }
@@ -40,7 +40,7 @@ class ControleRemoto implements Controlador{
         echo "<br> Está ligado?.." . ($this->getLigado()?"SIM":"NÃO");
         echo "<br> Está tocando?..." . ($this->getTocando()?"SIM":"NÃO");
         echo "<br> Volume: " . $this->getVolume();
-        for ($i=0; $i<= $this->getVolume();$i+=5){
+        for ($i=0; $i<= $this->getVolume(); $i+=10){
             echo " | ";
         }
         echo"<br>";
@@ -69,11 +69,13 @@ class ControleRemoto implements Controlador{
         }
     }
     public function pause() {
-        
+        if ($this->getLigado() && $this->getTocando()) {
+            $this->setTocando(false);
+        }
     }
-
     public function play() {
-        
+        if ($this->getLigado() && !($this->getTocando())) {
+            $this->setTocando(true);
+        }
     }
-
 }
